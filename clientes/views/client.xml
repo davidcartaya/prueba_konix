@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="view_client_tree" model="ir.ui.view">
+            <field name="name">client.client.tree</field>
+            <field name="model">client.client</field>
+            <field name="arch" type="xml">
+                <tree string="Clientes">
+                    <field name="name"/>
+                    <field name="last_name"/>
+                    <field name="email"/>
+                    <field name="phone"/>
+
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_client_form" model="ir.ui.view">
+            <field name="name">client.client.form</field>
+            <field name="model">client.client</field>
+            <field name="arch" type="xml">
+                <form string="Cliente">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="last_name"/>
+                            <field name="email"/>
+                            <field name="phone"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        
+        <record id="action_client" model="ir.actions.act_window">
+            <field name="name">Clientes</field>
+            <field name="res_model">client.client</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_client_tree"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_empty_folder">
+                    No hay clientes registrados aún.
+                </p>
+            </field>
+        </record>
+                
+        <!-- menu principal -->
+        <menuitem id="client_menu_root"
+            name="Clientes"
+            web_icon="client,static/description/icon.png"
+            active="True"
+            sequence="30" />
+
+        <!-- Menu Clientes -->
+        <menuitem id="menu_root_client" name="Clientes"
+            action="action_client"
+            parent="client_menu_root" sequence="1" />
+
+        
+
+    </data>
+</odoo>
